@@ -103,6 +103,7 @@ class Diffusion(object):
                 name = 'celeba_hq'
             else:
                 raise ValueError
+                
             if name != 'celeba_hq':
                 ckpt = get_ckpt_path(f"ema_{name}", prefix=self.args.exp)
                 print("Loading checkpoint {}".format(ckpt))

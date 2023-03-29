@@ -1,3 +1,13 @@
+# My Edit
+To run inpainting:
+```
+conda env create -f environment.yml
+source activate ddrm
+```
+```
+python main.py --ni --config cat.yml<create_config_file> --doc cat<Dataset that should be under datasets folder> --timesteps 20 --eta 0.85 --etaB 1 --deg inp<the_name_of_the_mask> --sigma_0 0.05 -i bedroom_inpaint<destination_folder>
+```
+
 # Denoising Diffusion Restoration Models (DDRM)
 
 [arXiv](https://arxiv.org/abs/2201.11793) | [PDF](https://ddrm-ml.github.io/DDRM-paper.pdf) | [Project Website](https://ddrm-ml.github.io/)
