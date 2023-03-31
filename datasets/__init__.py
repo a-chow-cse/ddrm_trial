@@ -187,7 +187,6 @@ def get_dataset(args, config):
             )
             test_dataset = dataset
         else:
-            print("Here?")
             dataset = torchvision.datasets.ImageNet(
                 os.path.join(args.exp, 'datasets', 'imagenet'), split='val',
                 transform=transforms.Compose([partial(image_size=config.data.image_size),

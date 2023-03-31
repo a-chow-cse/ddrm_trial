@@ -206,7 +206,23 @@ class Diffusion(object):
             H_funcs = WalshHadamardCS(config.data.channels, self.config.data.image_size, compress_by, torch.randperm(self.config.data.image_size**2, device=self.device), self.device)
         elif deg[:3] == 'inp':
             from functions.svd_replacement import Inpainting
-            if deg == 'inp_lolcat':
+            if deg == 'inp_left_down':
+                loaded = np.load("inp_masks/left_down.npy")
+                mask = torch.from_numpy(loaded).to(self.device).reshape(-1)
+                missing_r = torch.nonzero(mask == 0).long().reshape(-1) * 3
+            elif deg == 'inp_both_down':
+                loaded = np.load("inp_masks/both_down.npy")
+                mask = torch.from_numpy(loaded).to(self.device).reshape(-1)
+                missing_r = torch.nonzero(mask == 0).long().reshape(-1) * 3
+            elif deg == 'inp_left_up':
+                loaded = np.load("inp_masks/left_up.npy")
+                mask = torch.from_numpy(loaded).to(self.device).reshape(-1)
+                missing_r = torch.nonzero(mask == 0).long().reshape(-1) * 3
+            elif deg == 'inp_both_up':
+                loaded = np.load("inp_masks/both_up.npy")
+                mask = torch.from_numpy(loaded).to(self.device).reshape(-1)
+                missing_r = torch.nonzero(mask == 0).long().reshape(-1) * 3
+            elif deg == 'inp_lolcat':
                 loaded = np.load("inp_masks/lolcat_extra.npy")
                 mask = torch.from_numpy(loaded).to(self.device).reshape(-1)
                 missing_r = torch.nonzero(mask == 0).long().reshape(-1) * 3

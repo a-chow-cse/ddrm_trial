@@ -1,4 +1,4 @@
-# My Edit
+# Editing Part & Commands
 To run inpainting:
 ```
 conda env create -f environment.yml
@@ -11,7 +11,7 @@ python main.py --ni --config cat.yml<create_config_file> --doc cat<Dataset that 
 ### Custom Folder Experiment 1:
 - prepared Dataset using: `python prepareDataset.py`
     - desired_size : 256
-- Degradation: Inpainting Lolcat
+- Degradation: **Inpainting Lolcat**
 - Config File: ImageNet_256_ood.config 
     - changed:
         - subset_1k :False
@@ -29,7 +29,47 @@ python main.py --ni --config cat.yml<create_config_file> --doc cat<Dataset that 
 ```
 python main.py --ni --config imagenet_256_ood.yml --doc imageNet_ood_butterfly --timesteps 20 --eta 0.85 --etaB 1 --deg inp_lolcat --sigma_0 0.05 -i mimic_pair_inp_lolcat_imagenet_256
 ```
+---
+### Custom Folder Experiment 2:
+[same as before ]
+- Created Mask From Mask generator: left_down.npy
+- Degradation: **Inpainting left down**
+- Added condition for mask in Diffusion.py in runners folder
+                   
+```
+python main.py --ni --config imagenet_256_ood.yml --doc imageNet_ood_butterfly --timesteps 20 --eta 0.85 --etaB 1 --deg inp_left_down --sigma_0 0.05 -i mimic_pair_inp_left_down_imagenet_256
+```
+---
+### Custom Folder Experiment 3:
+[same as before ]
+- Created Mask From Mask generator: both_down.npy
+- Degradation: **Inpainting both down**
+- Added condition for mask in Diffusion.py in runners folder
 
+```
+python main.py --ni --config imagenet_256_ood.yml --doc imageNet_ood_butterfly --timesteps 20 --eta 0.85 --etaB 1 --deg inp_both_down --sigma_0 0.05 -i mimic_pair_inp_both_down_imagenet_256
+```
+---
+### Custom Folder Experiment 4:
+[same as before ]
+- Created Mask From Mask generator: left_up.npy
+- Degradation: **Inpainting left up**
+- Added condition for mask in Diffusion.py in runners folder
+
+```
+python main.py --ni --config imagenet_256_ood.yml --doc imageNet_ood_butterfly --timesteps 20 --eta 0.85 --etaB 1 --deg inp_left_up --sigma_0 0.05 -i mimic_pair_inp_left_up_imagenet_256
+```
+---
+### Custom Folder Experiment 5:
+[same as before ]
+- Created Mask From Mask generator: both_up.npy
+- Degradation: **Inpainting both up**
+- Added condition for mask in Diffusion.py in runners folder
+
+```
+python main.py --ni --config imagenet_256_ood.yml --doc imageNet_ood_butterfly --timesteps 20 --eta 0.85 --etaB 1 --deg inp_both_up --sigma_0 0.05 -i mimic_pair_inp_both_up_imagenet_256
+```
+---
 # Denoising Diffusion Restoration Models (DDRM)
 
 [arXiv](https://arxiv.org/abs/2201.11793) | [PDF](https://ddrm-ml.github.io/DDRM-paper.pdf) | [Project Website](https://ddrm-ml.github.io/)
