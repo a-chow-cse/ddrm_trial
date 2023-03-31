@@ -60,6 +60,12 @@ def get_dataset(args, config):
         test_transform = transforms.Compose(
             [transforms.Resize(config.data.image_size), transforms.ToTensor()]
         )
+    
+    #......................................
+    #Added to add custom sample folder to work on
+    print(args.doc)
+    root=os.path.join(args.exp, "datasets", args.doc)
+    print(root)
 
     if config.data.dataset == "CELEBA":
         cx = 89
@@ -70,7 +76,7 @@ def get_dataset(args, config):
         y2 = cx + 64
         if config.data.random_flip:
             dataset = CelebA(
-                root=os.path.join(args.exp, "datasets", "celeba"),
+                #root=os.path.join(args.exp, "datasets", "celeba"),
                 split="train",
                 transform=transforms.Compose(
                     [
@@ -84,7 +90,7 @@ def get_dataset(args, config):
             )
         else:
             dataset = CelebA(
-                root=os.path.join(args.exp, "datasets", "celeba"),
+                #root=os.path.join(args.exp, "datasets", "celeba"),
                 split="train",
                 transform=transforms.Compose(
                     [
@@ -97,7 +103,7 @@ def get_dataset(args, config):
             )
 
         test_dataset = CelebA(
-            root=os.path.join(args.exp, "datasets", "celeba"),
+            #root=os.path.join(args.exp, "datasets", "celeba"),
             split="test",
             transform=transforms.Compose(
                 [
@@ -112,7 +118,8 @@ def get_dataset(args, config):
     elif config.data.dataset == "LSUN":
         if config.data.out_of_dist:
             dataset = torchvision.datasets.ImageFolder(
-                os.path.join(args.exp, 'datasets', "ood_{}".format(config.data.category)),
+                os.path.join(args.exp, "datasets", args.doc),
+                #os.path.join(args.exp, 'datasets', "ood_{}".format(config.data.category)),
                 transform=transforms.Compose([partial(center_crop_arr, image_size=config.data.image_size),
                 transforms.ToTensor()])
             )
@@ -121,7 +128,7 @@ def get_dataset(args, config):
             train_folder = "{}_train".format(config.data.category)
             val_folder = "{}_val".format(config.data.category)
             test_dataset = LSUN(
-                root=os.path.join(args.exp, "datasets", "lsun"),
+                #root=os.path.join(args.exp, "datasets", "lsun"),
                 classes=[val_folder],
                 transform=transforms.Compose(
                     [
@@ -136,14 +143,16 @@ def get_dataset(args, config):
     elif config.data.dataset == "CelebA_HQ" or config.data.dataset == 'FFHQ':
         if config.data.out_of_dist:
             dataset = torchvision.datasets.ImageFolder(
-                os.path.join(args.exp, "datasets", "ood_celeba"),
+                os.path.join(args.exp, "datasets", args.doc),
+                #os.path.join(args.exp, "datasets", "ood_celeba"),
                 transform=transforms.Compose([transforms.Resize([config.data.image_size, config.data.image_size]),
                                               transforms.ToTensor()])
             )
             test_dataset = dataset
         else:
             dataset = torchvision.datasets.ImageFolder(
-                os.path.join(args.exp, "datasets", "celeba_hq"),
+                os.path.join(args.exp, "datasets", args.doc),
+                #os.path.join(args.exp, "datasets", "celeba_hq"),
                 transform=transforms.Compose([transforms.Resize([config.data.image_size, config.data.image_size]),
                                               transforms.ToTensor()])
             )
@@ -171,15 +180,17 @@ def get_dataset(args, config):
             test_dataset = dataset
         elif config.data.out_of_dist:
             dataset = torchvision.datasets.ImageFolder(
-                os.path.join(args.exp, 'datasets', 'ood'),
+                os.path.join(args.exp, "datasets", args.doc),
+                #os.path.join(args.exp, 'datasets', 'ood'),
                 transform=transforms.Compose([partial(center_crop_arr, image_size=config.data.image_size),
                 transforms.ToTensor()])
             )
             test_dataset = dataset
         else:
+            print("Here?")
             dataset = torchvision.datasets.ImageNet(
                 os.path.join(args.exp, 'datasets', 'imagenet'), split='val',
-                transform=transforms.Compose([partial(center_crop_arr, image_size=config.data.image_size),
+                transform=transforms.Compose([partial(image_size=config.data.image_size),
                 transforms.ToTensor()])
             )
             test_dataset = dataset
