@@ -222,6 +222,10 @@ class Diffusion(object):
                 loaded = np.load("inp_masks/both_up.npy")
                 mask = torch.from_numpy(loaded).to(self.device).reshape(-1)
                 missing_r = torch.nonzero(mask == 0).long().reshape(-1) * 3
+            elif deg == 'inp_opposite_oneSided':
+                loaded = np.load("inp_masks/opposite_oneSided.npy")
+                mask = torch.from_numpy(loaded).to(self.device).reshape(-1)
+                missing_r = torch.nonzero(mask == 0).long().reshape(-1) * 3
             elif deg == 'inp_lolcat':
                 loaded = np.load("inp_masks/lolcat_extra.npy")
                 mask = torch.from_numpy(loaded).to(self.device).reshape(-1)

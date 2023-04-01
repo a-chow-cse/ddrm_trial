@@ -70,6 +70,41 @@ python main.py --ni --config imagenet_256_ood.yml --doc imageNet_ood_butterfly -
 python main.py --ni --config imagenet_256_ood.yml --doc imageNet_ood_butterfly --timesteps 20 --eta 0.85 --etaB 1 --deg inp_both_up --sigma_0 0.05 -i mimic_pair_inp_both_up_imagenet_256
 ```
 ---
+
+### Custom Folder Experiment 6:
+[same as before ]
+- Created Mask From Mask generator: both_up.npy
+- Degradation: **Inpainting both opposite onsided**
+- Added condition for mask in Diffusion.py in runners folder
+
+```
+python main.py --ni --config imagenet_256_ood.yml --doc imageNet_ood_butterfly --timesteps 20 --eta 0.85 --etaB 1 --deg inp_opposite_oneSided --sigma_0 0.05 -i mimic_pair_inp_opposite_oneSided_imagenet_256
+```
+---
+### Experiment 7
+- SuperResolution - sr4
+```
+ python main.py --ni --config imagenet_256_ood.yml --doc imageNet_ood_butterfly --timesteps 20 --eta 0.85 --etaB 1 --deg sr4 --sigma_0 0.05 -i mimic_pair_sr4_imagenet_256
+ ```
+ ---
+### Experiment 8
+- SuperResolution **- sr2**
+- Gives Better Output while keeping clean edges
+```
+ python main.py --ni --config imagenet_256_ood.yml --doc imageNet_ood_butterfly --timesteps 20 --eta 0.85 --etaB 1 --deg sr2 --sigma_0 0.05 -i mimic_pair_sr2_imagenet_256
+ ```
+ ---
+
+ ### Experiment 9
+ - tried mask up both sides on sr2 generated images
+    - exp/datasets/sr2_imageNet_ood_butterfly/
+ - still unwanted spot after recovery
+ - Degradation **inp_both_up**
+ ```
+ python main.py --ni --config imagenet_256_ood.yml --doc sr2_imageNet_ood_butterfly --timesteps 20 --eta 0.85 --etaB 1 --deg inp_both_up --sigma_0 0.05 -i sr2_mimic_pair_inp_both_up_imagenet_256
+ ```
+ ---
+
 # Denoising Diffusion Restoration Models (DDRM)
 
 [arXiv](https://arxiv.org/abs/2201.11793) | [PDF](https://ddrm-ml.github.io/DDRM-paper.pdf) | [Project Website](https://ddrm-ml.github.io/)
