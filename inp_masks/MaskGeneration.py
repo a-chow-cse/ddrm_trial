@@ -82,6 +82,20 @@ def both_but_one_sided_mask(im):
     np.save('opposite_oneSided.npy', mask)  
     im.save(os.getcwd()+"/editedLuscombei.png")
 
-im = Image.open('../exp/datasets/imageNet_ood_butterfly/luscombei/luscombei.png')
+def half_mask(im):
+    im_arr = np.array(im)
+
+    mask=np.ones((256,256))
+
+    for i in range(0,100):
+        for j in range(0,256):
+            im_arr[i,j]=1
+            mask[i,j]=0
+
+    im= Image.fromarray(im_arr)
+    np.save('half.npy', mask)  
+    im.save(os.getcwd()+"/whole_edited.png")
+
+im = Image.open('../exp/datasets/color_swatch/whole.png')
 #both_but_one_sided_mask(im)
-both_up_mask(im)
+half_mask(im)

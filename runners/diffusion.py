@@ -234,6 +234,10 @@ class Diffusion(object):
                 loaded = np.load("inp_masks/lorem3.npy")
                 mask = torch.from_numpy(loaded).to(self.device).reshape(-1)
                 missing_r = torch.nonzero(mask == 0).long().reshape(-1) * 3
+            elif deg == 'inp_half':
+                loaded = np.load("inp_masks/half.npy")
+                mask = torch.from_numpy(loaded).to(self.device).reshape(-1)
+                missing_r = torch.nonzero(mask == 0).long().reshape(-1) * 3
             else:
                 missing_r = torch.randperm(config.data.image_size**2)[:config.data.image_size**2 // 2].to(self.device).long() * 3
             missing_g = missing_r + 1

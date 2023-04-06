@@ -34,7 +34,7 @@ python main.py --ni --config imagenet_256_ood.yml --doc imageNet_ood_butterfly -
 [same as before ]
 - Created Mask From Mask generator: left_down.npy
 - Degradation: **Inpainting left down**
-- Added condition for mask in Diffusion.py in runners folder
+- **Added condition for mask in Diffusion.py in runners folder**
                    
 ```
 python main.py --ni --config imagenet_256_ood.yml --doc imageNet_ood_butterfly --timesteps 20 --eta 0.85 --etaB 1 --deg inp_left_down --sigma_0 0.05 -i mimic_pair_inp_left_down_imagenet_256
@@ -102,6 +102,15 @@ python main.py --ni --config imagenet_256_ood.yml --doc imageNet_ood_butterfly -
  - Degradation **inp_both_up**
  ```
  python main.py --ni --config imagenet_256_ood.yml --doc sr2_imageNet_ood_butterfly --timesteps 20 --eta 0.85 --etaB 1 --deg inp_both_up --sigma_0 0.05 -i sr2_mimic_pair_inp_both_up_imagenet_256
+ ```
+ ---
+  ### Experiment 10 **colorchecker-inpainting with imagenet**
+ - can not generate the missing swatches
+ - Degradation **inp_half**
+ ```
+python main.py --ni --config imagenet_256_ood.yml \
+--doc color_swatch --timesteps 20 --eta 0.85 --etaB 1 --deg\
+ inp_half --sigma_0 0.05 -i color_checker_inp_half_imagenet_256
  ```
  ---
 

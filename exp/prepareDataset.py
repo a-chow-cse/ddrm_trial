@@ -44,7 +44,7 @@ def change_image(folder_name,desired_size):
         else:
             change_image(f.path,desired_size)
 
-folder_name="./datasets/imageNet_ood_butterfly"
+folder_name="./datasets/color_swatch"
 
 desired_size = 256
 
